@@ -45,25 +45,26 @@ void *child(void *arg)
 {
     char line[DEFAULT_BUFLEN];
     int bytes_read;
-    int *client = (int *)arg; 
+    int client = *(int *)arg; 
     struct sockaddr_in client_addr;
-    int addr_size = sizeof(client_addr); 
-    int authenticated = 1; 
+    socklen_t addr_size = sizeof(client_addr); 
+    int authenticated = 0; 
 
-    send(client, "welcome to BOB file server \n", strlen("welcome to BOB file server \n"), 0); 
+    send(client, "welcome to BOB file server \n", 30, 0); 
 
-    if (getpeername(client, &client_addr, &addr_size)) 
+    if (getpeername(client, (struct sockaddr *)&client_addr, &addr_size) < 0) 
     {
-        perror("getpeername failed"); 
+        perror("getpeername() failed");
+        return NULL; 
     }
 
     while (1)
     {
-        read(client, line, DEFAULT_BUFLEN); 
+        bytes_read = read(client, line, DEFAULT_BUFLEN); 
 
-        if (bytes_read == 0) 
+        if (bytes_read < 0) 
         {
-            printf("Connection closed\n");
+            perror("ERROR reading from socket");
             break;
         }
     }
