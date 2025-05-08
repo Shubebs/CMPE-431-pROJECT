@@ -1,1 +1,2 @@
 This function checks if the username and password you typed match any line in the password.cfg file. If there's a match, it lets you in (returns 1), otherwise, access is denied (returns 0).
+Second commit: I tried running the code but it was displaying an error, i will rectify the error and recommit.
