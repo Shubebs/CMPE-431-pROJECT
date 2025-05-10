@@ -67,5 +67,10 @@ void *child(void *arg)
             perror("ERROR reading from socket");
             break;
         }
+        else if (bytes_read = 0)
+        {
+            printf("Client disconnected: %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
+            break;
+        }
     }
 }
