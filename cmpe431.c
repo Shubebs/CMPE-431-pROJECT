@@ -72,5 +72,7 @@ void *child(void *arg)
             printf("Client disconnected: %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
             break;
         }
+        line[bytes_read] = '\0';
+        char *command = strtok(line, " \n");
     }
 }
