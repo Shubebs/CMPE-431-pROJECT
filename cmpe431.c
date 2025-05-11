@@ -74,5 +74,23 @@ void *child(void *arg)
         }
         line[bytes_read] = '\0';
         char *command = strtok(line, " \n");
+        if (strcmp(command, "USER") == 0 || strcmp(command,"user")== 0)
+        {
+            char *username = strtok(NULL, " ");
+            char *password = strtok(NULL, " ");
+
+            if (username != NULL && password != NULL)
+            {
+                if (authentication(username, password))
+                {
+                    authenticated = 1;
+                    send(client, "200 User granted to access\n", strlen("200 User granted to access\n"), 0);
+                    printf("User logged in: %s\n", username);
+                }
+                else
+                {
+                    send(client, "User not found.\n", strlen("User not found.\n"), 0);
+                }
+            }}
     }
 }
