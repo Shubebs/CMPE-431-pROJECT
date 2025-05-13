@@ -95,6 +95,8 @@ void *child(void *arg)
             else if (!authenticated)
             {
             send(client, "Please log in first.\n", strlen("Please log in first.\n"), 0);
-        }
+            }else if (strcmp(command, "LIST") == 0 || strcmp(command,"list") == 0)
+            {
+                printf("Received LIST_FILES command.\n");
     }
 }

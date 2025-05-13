@@ -6,3 +6,4 @@ Commit 5: Finally rectified the error, I used = 0 intead of == 0.
 Commit 6: I Added basic string parsing for client commands
 Commit 7: Implement USER command with authentication check and it ran well
 Comit 8: I Add access control message for unauthenticated users and is working fine
+Commit 9: Start LIST command handler with logging
