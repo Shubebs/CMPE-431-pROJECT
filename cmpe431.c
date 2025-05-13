@@ -92,5 +92,9 @@ void *child(void *arg)
                     send(client, "User not found.\n", strlen("User not found.\n"), 0);
                 }
             }}
+            else if (!authenticated)
+            {
+            send(client, "Please log in first.\n", strlen("Please log in first.\n"), 0);
+        }
     }
 }
