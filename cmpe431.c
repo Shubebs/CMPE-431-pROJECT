@@ -98,5 +98,14 @@ void *child(void *arg)
             }else if (strcmp(command, "LIST") == 0 || strcmp(command,"list") == 0)
             {
                 printf("Received LIST_FILES command.\n");
+
+                DIR *directory;
+                struct dirent *entry;
+                directory = opendir(".");
+                if (directory == NULL)
+                {
+                    perror("Error opening directory");
+                    break;
+                }
     }
 }
