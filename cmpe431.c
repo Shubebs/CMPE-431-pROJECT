@@ -107,5 +107,19 @@ void *child(void *arg)
                     perror("Error opening directory");
                     break;
                 }
+
+
+                while ((entry = readdir(directory)) != NULL)
+                {
+                struct stat file_stat;
+                if (stat(entry->d_name, &file_stat) < 0)
+                {
+                    perror("Error getting file status");
+                    break;
+                }
+                char file_info[DEFAULT_BUFLEN];
+                sprintf(file_info, "%s %ld\n", entry->d_name, file_stat.st_size);
+                send(client, file_info, strlen(file_info), 0);
+                }
     }
 }
