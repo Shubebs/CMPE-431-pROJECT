@@ -139,5 +139,24 @@ void *child(void *arg)
             {
                 FILE*myfile;
                 myfile = fopen(filename,"r");
+
+            if (myfile == NULL){
+
+                char detection [DEFAULT_BUFLEN];
+                sprintf(detection,"404 FILE %s can't be found \n",filename);
+                send (client, detection , strlen(detection),0);
+
+            }
+            else{
+
+           char show[DEFAULT_BUFLEN];
+           while (fgets(show, DEFAULT_BUFLEN, myfile) != NULL)
+             {
+               send(client, show, strlen(show), 0);
+             } 
+             fclose(myfile);
+             send(client, "\r\n.\r\n", strlen("\r\n.\r\n"), 0);
+         }
+            }
     }
 }
