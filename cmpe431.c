@@ -121,5 +121,14 @@ void *child(void *arg)
                 sprintf(file_info, "%s %ld\n", entry->d_name, file_stat.st_size);
                 send(client, file_info, strlen(file_info), 0);
                 }
+
+                if (closedir(directory) == -1)
+                {
+                perror("Error closing directory.\n");
+                break;
+                }
+
+                send(client, ".", 1, 0);
+            }
     }
 }

@@ -9,3 +9,4 @@ Comit 8: I Add access control message for unauthenticated users and is working f
 Commit 9: Start LIST command handler with logging
 Commit 10: Open current directory for file listing.#
 Commit 11: Loop through directory and send file names with sizes
+Commit 12: Finish directory listing with closing and end signal
