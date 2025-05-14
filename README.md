@@ -10,3 +10,4 @@ Commit 9: Start LIST command handler with logging
 Commit 10: Open current directory for file listing.#
 Commit 11: Loop through directory and send file names with sizes
 Commit 12: Finish directory listing with closing and end signal
+Commit 13: Add logic to check and open requested file

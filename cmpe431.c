@@ -130,5 +130,14 @@ void *child(void *arg)
 
                 send(client, ".", 1, 0);
             }
+
+            else if (strcmp(command ,"GET") == 0 || strcmp(command ,"get") == 0)
+            {
+            char *filename= strtok(NULL," \n ");
+            
+            if (filename != NULL)
+            {
+                FILE*myfile;
+                myfile = fopen(filename,"r");
     }
 }
