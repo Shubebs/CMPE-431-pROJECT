@@ -12,3 +12,4 @@ Commit 11: Loop through directory and send file names with sizes
 Commit 12: Finish directory listing with closing and end signal
 Commit 13: Add logic to check and open requested file
 Commit 14: Send file contents to client or return 404 if not found
+Commit 15: Implement PUT command to receive and store file on server

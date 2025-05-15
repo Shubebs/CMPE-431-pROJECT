@@ -157,6 +157,42 @@ void *child(void *arg)
              fclose(myfile);
              send(client, "\r\n.\r\n", strlen("\r\n.\r\n"), 0);
          }
+
             }
+        }else if (strcmp(command ,"PUT") == 0 || strcmp(command ,"put") == 0)
+{
+    char *filename= strtok(NULL," \n ");
+    if (filename != NULL)
+    {
+        FILE* myfile;
+        myfile = fopen(filename,"w");
+        if (myfile == NULL){
+            char detection [DEFAULT_BUFLEN];
+            sprintf(detection,"400 File %s cannot save on server side.\n",filename);
+            send (client, detection , strlen(detection),0);
+        } else{ 
+            
+            char show[DEFAULT_BUFLEN];
+            int t_byte = 0;
+            while (1) 
+            {
+                bytes_read = read(client, show, DEFAULT_BUFLEN);
+                if (bytes_read <= 0) {
+                    break;
+                }
+           
+                if (bytes_read == 2 && show[0] == '.' && show[1] == '\n') {
+                    break;
+                }
+                fwrite(show, sizeof(char), bytes_read, myfile);
+                t_byte += bytes_read;
+            } 
+            fclose(myfile);
+            char message[DEFAULT_BUFLEN];
+            sprintf(message, "200 %d Byte %s file retrieved by server and was saved.\n", t_byte, filename);
+            send(client, message, strlen(message), 0);
+        }
+        
     }
+}
 }
