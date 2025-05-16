@@ -41,6 +41,7 @@ int authentication(char *username, char *password)
     fclose(file);
     return 0;
 }
+
 void *child(void *arg)
 {
     char line[DEFAULT_BUFLEN];
@@ -72,6 +73,7 @@ void *child(void *arg)
             printf("Client disconnected: %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
             break;
         }
+
         line[bytes_read] = '\0';
         char *command = strtok(line, " \n");
         if (strcmp(command, "USER") == 0 || strcmp(command,"user")== 0)
@@ -98,6 +100,7 @@ void *child(void *arg)
             }else if (strcmp(command, "LIST") == 0 || strcmp(command,"list") == 0)
             {
                 printf("Received LIST_FILES command.\n");
+
 
                 DIR *directory;
                 struct dirent *entry;
@@ -194,5 +197,25 @@ void *child(void *arg)
         }
         
     }
-}
+} else if (strcmp(command ,"DELETE")==0 || strcmp(command ,"delete")==0)
+{
+    char* myfilename = strtok(NULL,"\n");
+    if(myfilename !=NULL){
+    int detect =remove(myfilename);
+
+    if(detect == 0){
+        char message[DEFAULT_BUFLEN];
+        sprintf(message,"200 file %s has been deleted.\n",myfilename);
+        send(client,message,strlen(message),0);
+
+    }else
+    {
+        char msg[DEFAULT_BUFLEN];
+        sprintf(msg,"400 file %s is not on the server .\n",myfilename);
+        send(client,msg,strlen(msg),0);
+    }
+    
+
+    }
+    
 }
