@@ -59,7 +59,7 @@ void *child(void *arg)
         return NULL; 
     }
 
-    while (1)
+    while (1)y
     {
         bytes_read = read(client, line, DEFAULT_BUFLEN); 
 
@@ -217,5 +217,18 @@ void *child(void *arg)
     
 
     }
-    
+
+}  else if (strcmp(command,"QUIT")==0||strcmp(command,"quit")==0)
+{
+    send(client, "Goodbye!\n", strlen("Goodbye!\n"), 0);
+         printf("Client disconnected: %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
+         close(client);
+         pthread_exit(NULL);
 }
+            else
+            {
+                send(client, "Invalid command.\n", strlen("Invalid command.\n"), 0);
+            }
+        
+        
+        }
