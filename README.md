@@ -15,3 +15,4 @@ Commit 14: Send file contents to client or return 404 if not found
 Commit 15: Implement PUT command to receive and store file on server
 Commit 16: I Added graceful disconnection using QUIT command
 Commit 18: Handle unrecognized commands with error message
+Commit 19: Add basic command-line argument parsing for directory and port

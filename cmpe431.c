@@ -232,3 +232,34 @@ void *child(void *arg)
         
         
         }
+
+
+
+
+    }
+int main(int argc, char *argv[])
+{
+    int server_socket, optival, option;
+    struct sockaddr_in addr;
+    unsigned short port = 0;
+    char dir[256] = ".";
+    char pwd_file[256];
+
+    while ((option = getopt(argc, argv, "d:p:u:")) != -1)
+    {
+        switch (option)
+        {
+        case 'd':
+            strncpy(dir, optarg, sizeof(dir));
+            break;
+        case 'p':
+            port = atoi(optarg);
+            break;
+        case 'u':
+            strncpy(pwd_file, optarg, sizeof(pwd_file));
+            break;
+        default:
+            fprintf(stderr, "Usage: %s -d <directory> -p <port> -u <password_file>\n", argv[0]);
+            exit(EXIT_FAILURE);
+        }
+    }
