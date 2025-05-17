@@ -14,6 +14,7 @@ Commit 13: Add logic to check and open requested file
 Commit 14: Send file contents to client or return 404 if not found
 Commit 15: Implement PUT command to receive and store file on server
 Commit 16: I Added graceful disconnection using QUIT command
-Commit 18: Handle unrecognized commands with error message
+Commit 18: Handle unrecognized commands with error message and made a mistake a merge branch 'masters' of  https://github.com/Shubebs/CMPE-431-pROJECT
 Commit 19: Add basic command-line argument parsing for directory and port
 Commit 20: Set up TCP socket and server address configuration
+Commit 21: Bind and listen on the specified port

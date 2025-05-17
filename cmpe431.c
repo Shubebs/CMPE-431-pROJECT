@@ -278,3 +278,13 @@ int main(int argc, char *argv[])
         addr.sin_port = htons(PORT);
 
     addr.sin_addr.s_addr = INADDR_ANY;
+    optival = 1;
+    setsockopt(server_socket, SOL_SOCKET, SO_REUSEADDR, &optival, sizeof optival);
+
+    if (bind(server_socket, (struct sockaddr *)&addr, sizeof(addr)) != 0)
+        PANIC("Bind");
+
+    if (listen(server_socket, SOMAXCONN) != 0)
+        PANIC("Listen");
+
+    printf("System ready on port %d\n", ntohs(addr.sin_port));
