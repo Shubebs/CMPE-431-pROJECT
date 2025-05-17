@@ -288,3 +288,25 @@ int main(int argc, char *argv[])
         PANIC("Listen");
 
     printf("System ready on port %d\n", ntohs(addr.sin_port));
+
+    while (1)
+    {
+        int client;
+        socklen_t addr_size = sizeof(addr);
+        pthread_t child_thread;
+        struct sockaddr_in client_addr;
+        client = accept(server_socket, (struct sockaddr *)&client_addr, &addr_size);
+        if (client < 0)
+        {
+            perror("Accept failed");
+            continue; 
+        }
+        if (pthread_create(&child_thread, NULL, child, &client) != 0)
+            perror("Thread creation");
+
+        pthread_detach(child_thread);
+        printf("Connected: %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
+    }
+
+    return 0;
+}

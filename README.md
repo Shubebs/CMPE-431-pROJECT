@@ -18,3 +18,4 @@ Commit 18: Handle unrecognized commands with error message and made a mistake a 
 Commit 19: Add basic command-line argument parsing for directory and port
 Commit 20: Set up TCP socket and server address configuration
 Commit 21: Bind and listen on the specified port
+Commit 22: Implement main server loop with accept and threading and Print diagnostic info for debugging port, directory, connections
