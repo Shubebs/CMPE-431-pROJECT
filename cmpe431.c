@@ -263,3 +263,18 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
     }
+    printf("Directory: %s\n", dir);
+    printf("Port: %d\n", port);
+    printf("Password file: %s\n", pwd_file);
+
+    if ((server_socket = socket(PF_INET, SOCK_STREAM, 0)) < 0)
+        PANIC("Socket");
+
+    addr.sin_family = AF_INET;
+
+    if (port > 0)
+        addr.sin_port = htons(port);
+    else
+        addr.sin_port = htons(PORT);
+
+    addr.sin_addr.s_addr = INADDR_ANY;
